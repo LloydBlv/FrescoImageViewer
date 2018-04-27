@@ -17,6 +17,7 @@
 package com.stfalcon.frescoimageviewer;
 
 import android.content.Context;
+import android.support.annotation.LayoutRes;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -47,6 +48,7 @@ class ImageViewerView extends RelativeLayout
     private ViewGroup dismissContainer;
     private SwipeToDismissListener swipeDismissListener;
     private View overlayView;
+    private @LayoutRes int overlayViewResId;
 
     private SwipeDirectionDetector.Direction direction;
 
@@ -101,6 +103,14 @@ class ImageViewerView extends RelativeLayout
         if (overlayView != null) {
             dismissContainer.addView(view);
         }
+    }
+
+    public void setOverlayView(int overlayViewResId) {
+        if (overlayViewResId != 0) {
+            this.overlayView = inflate(getContext(), overlayViewResId, this);
+            dismissContainer.addView(overlayView);
+        }
+
     }
 
     public void allowZooming(boolean allowZooming) {

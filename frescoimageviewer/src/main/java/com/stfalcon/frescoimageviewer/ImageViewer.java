@@ -23,6 +23,7 @@ import android.net.Uri;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.StyleRes;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -77,6 +78,7 @@ public class ImageViewer implements OnDismissListener, DialogInterface.OnKeyList
         viewer.setOnDismissListener(this);
         viewer.setBackgroundColor(builder.backgroundColor);
         viewer.setOverlayView(builder.overlayView);
+        viewer.setOverlayView(builder.overlayViewResId);
         viewer.setImageMargin(builder.imageMarginPixels);
         viewer.setContainerPadding(builder.containerPaddingPixels);
         viewer.setUrls(builder.dataSet, builder.startPosition);
@@ -204,6 +206,7 @@ public class ImageViewer implements OnDismissListener, DialogInterface.OnKeyList
         private OnImageChangeListener imageChangeListener;
         private OnDismissListener onDismissListener;
         private View overlayView;
+        private @LayoutRes int overlayViewResId = 0;
         private int imageMarginPixels;
         private int[] containerPaddingPixels = new int[4];
         private ImageRequestBuilder customImageRequestBuilder;
@@ -282,6 +285,16 @@ public class ImageViewer implements OnDismissListener, DialogInterface.OnKeyList
          */
         public Builder setOverlayView(View view) {
             this.overlayView = view;
+            return this;
+        }
+
+        /**
+         * Set overlay viewResId
+         *
+         * @return This Builder object to allow for chaining of calls to set methods
+         */
+        public Builder setOverlayViewResId(int overlayViewResId) {
+            this.overlayViewResId = overlayViewResId;
             return this;
         }
 
