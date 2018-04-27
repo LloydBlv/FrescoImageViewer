@@ -24,6 +24,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.Nullable;
 import android.support.annotation.StyleRes;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -86,7 +87,7 @@ public class ImageViewer implements OnDismissListener, DialogInterface.OnKeyList
             @Override
             public void onPageSelected(int position) {
                 if (builder.imageChangeListener != null) {
-                    builder.imageChangeListener.onImageChange(position);
+                    builder.imageChangeListener.onImageChange(position, viewer.getOverlayView());
                 }
             }
         });
@@ -141,7 +142,7 @@ public class ImageViewer implements OnDismissListener, DialogInterface.OnKeyList
      * Interface definition for a callback to be invoked when image was changed
      */
     public interface OnImageChangeListener {
-        void onImageChange(int position);
+        void onImageChange(int position, @Nullable final View overlayView);
     }
 
     /**

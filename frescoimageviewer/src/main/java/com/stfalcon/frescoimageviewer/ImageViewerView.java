@@ -107,8 +107,7 @@ class ImageViewerView extends RelativeLayout
 
     public void setOverlayView(int overlayViewResId) {
         if (overlayViewResId != 0) {
-            this.overlayView = inflate(getContext(), overlayViewResId, this);
-            dismissContainer.addView(overlayView);
+            this.overlayView = inflate(getContext(), overlayViewResId, dismissContainer);
         }
 
     }
@@ -275,4 +274,7 @@ class ImageViewerView extends RelativeLayout
                 && overlayView.dispatchTouchEvent(event);
     }
 
+    public View getOverlayView() {
+        return overlayView;
+    }
 }

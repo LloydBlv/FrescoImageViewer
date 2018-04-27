@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import android.view.View;
+import android.widget.TextView;
 import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
 import com.facebook.drawee.generic.RoundingParams;
 import com.stfalcon.frescoimageviewer.ImageViewer;
@@ -23,7 +25,7 @@ import jp.wasabeef.fresco.processors.GrayscalePostprocessor;
  */
 public class StyledViewActivity extends DemoActivity {
 
-    private ImageOverlayView overlayView;
+    //private ImageOverlayView overlayView;
     private StylingOptions options;
 
     @Override
@@ -72,8 +74,10 @@ public class StyledViewActivity extends DemoActivity {
         builder.allowZooming(options.get(StylingOptions.Property.ZOOMING));
 
         if (options.get(StylingOptions.Property.SHOW_OVERLAY)) {
-            overlayView = new ImageOverlayView(this);
-            builder.setOverlayView(overlayView);
+            //overlayView = new ImageOverlayView(this);
+            //overlayView = new ImageOverlayView(this);
+            builder.setOverlayViewResId(R.layout.view_image_overlay);
+            //builder.setOverlayView(overlayView);
             builder.setImageChangeListener(getImageChangeListener());
         }
 
@@ -93,10 +97,11 @@ public class StyledViewActivity extends DemoActivity {
     private ImageViewer.OnImageChangeListener getImageChangeListener() {
         return new ImageViewer.OnImageChangeListener() {
             @Override
-            public void onImageChange(int position) {
+            public void onImageChange(int position, final View overlayView) {
                 String url = posters[position];
-                overlayView.setShareText(url);
-                overlayView.setDescription(descriptions[position]);
+                //overlayView.setShareText(url);
+                ((TextView) overlayView.findViewById(R.id.tvDescription))
+                    .setText(descriptions[position]);
             }
         };
     }

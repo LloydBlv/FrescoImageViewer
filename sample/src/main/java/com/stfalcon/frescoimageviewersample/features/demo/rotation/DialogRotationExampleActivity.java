@@ -2,6 +2,7 @@ package com.stfalcon.frescoimageviewersample.features.demo.rotation;
 
 import android.os.Bundle;
 
+import android.view.View;
 import com.stfalcon.frescoimageviewer.ImageViewer;
 import com.stfalcon.frescoimageviewersample.R;
 import com.stfalcon.frescoimageviewersample.common.data.Demo;
@@ -59,7 +60,7 @@ public class DialogRotationExampleActivity extends DemoActivity {
     private ImageViewer.OnImageChangeListener getImageChangeListener() {
         return new ImageViewer.OnImageChangeListener() {
             @Override
-            public void onImageChange(int position) {
+            public void onImageChange(int position, final View overlayView) {
                 currentPosition = position;
             }
         };
